@@ -37,8 +37,9 @@
   .step:first-of-type { border-top:0; }
   .step svg { flex:0 0 112px; width:112px; height:200px; }
   .step > div { flex:1; min-width:0; }
-  .codebtn { margin-top:10px; padding:11px 8px; background:var(--blue); color:#fff; font:700 15px/1.2 ui-monospace, monospace; border-radius:12px; }
-  .offscreen { position:absolute; left:-9999px; top:0; width:1px; height:1px; }
+  .note { margin-top:6px; padding:14px; background:#fff6d6; border-radius:14px; font-size:14px; line-height:1.45; font-weight:500; }
+  .note p + p { margin-top:8px; }
+  .note b { font-weight:800; }
   .step .num { display:inline-flex; width:28px; height:28px; border-radius:50%; background:var(--blue); color:#fff; font-weight:800; align-items:center; justify-content:center; margin-bottom:6px; }
   .step p { font-size:15px; font-weight:500; line-height:1.4; }
   .step p b { font-weight:800; }
@@ -140,24 +141,9 @@
       <p>Ganz unten auf <b>„Link einfügen“</b> tippen. Dein Einladungslink ist schon kopiert – einfach einfügen. Fertig: <b>3 Monate PRO</b> 🎉</p></div>
   </div>
 
-  <div class="step"><svg viewBox="0 0 112 200" role="img" aria-hidden="true">
-      <rect x="3" y="3" width="106" height="194" rx="16" fill="#1d2433"/>
-      <rect x="9" y="12" width="94" height="176" rx="9" fill="#f3f5f8"/>
-      <rect x="44" y="6" width="24" height="3" rx="1.5" fill="#556"/>
-      <rect x="9" y="12" width="94" height="30" rx="9" fill="#006699"/>
-      <text x="56" y="32" text-anchor="middle" font-size="10" font-weight="800" fill="#fff" font-family="Montserrat,sans-serif">GO PRO!</text>
-      <rect x="19" y="54" width="74" height="40" rx="6" fill="#fff"/><text x="56" y="79" text-anchor="middle" font-size="16" font-family="sans-serif">🎁</text>
-      <rect class="tap" x="19" y="104" width="74" height="24" rx="6" fill="#ffd84d" stroke="#e21b3c" stroke-width="2"/>
-      <text x="56" y="120" text-anchor="middle" font-size="7.5" font-weight="800" fill="#1d2433" font-family="Montserrat,sans-serif">Gutschein einlösen</text>
-      <rect x="19" y="140" width="74" height="7" rx="3" fill="#d5dbe3"/>
-      <rect x="19" y="154" width="74" height="22" rx="6" fill="#fff" stroke="#c8d0da"/>
-      <text x="56" y="168" text-anchor="middle" font-size="7.5" font-weight="700" fill="#1d2433" font-family="ui-monospace,monospace">studo4fsmbvt</text>
-    </svg>
-    <div><span class="num">5</span>
-      <p><b>Bonus:</b> Auf derselben Seite noch <b>„Gutschein einlösen“</b> antippen und den <b>Fachschafts-Code</b> eingeben → <b>+1 Monat</b> obendrauf. Studo-Gutscheine lassen sich kombinieren.</p>
-      <button id="copyCode" class="btn codebtn" aria-label="Code studo4fsmbvt kopieren">📋 studo4fsmbvt</button>
-      <input id="code" class="offscreen" readonly tabindex="-1" aria-hidden="true" value="studo4fsmbvt">
-      <p class="hint" style="margin:6px 0 0">Reihenfolge: zuerst den Link (Schritt 4, wegen der 24-h-Frist), dann den Code.</p></div>
+  <div class="note">
+    <p><b>ℹ️ Und der Fachschafts-Code?</b> Jetzt <b>nicht</b> zusätzlich einlösen: Er startet ein <b>Probe-Abo im Store</b>, das nach dem Gratismonat Geld kostet – und läuft parallel zu euren 3 Gratis-Monaten, bringt also nichts. Die Einladung oben ist gratis, ganz ohne Zahlungsdaten.</p>
+    <p>Wenn die 3 Monate vorbei sind, könnt ihr ihn noch nutzen – dann das Probe-Abo aber <b>gleich im Store kündigen</b>, sonst wird abgebucht.</p>
   </div>
 </section>
 <p class="foot">Fragen? Einfach eure Tutor:innen fragen 🙂</p>
@@ -224,16 +210,6 @@
       return document.execCommand('copy');
     } catch (e) { return false; }
   }
-
-  var codeInput = document.getElementById('code');
-  var copyCode = document.getElementById('copyCode');
-  copyCode.addEventListener('click', function () {
-    copyText(codeInput.value, codeInput).then(function (ok) {
-      copyCode.textContent = ok ? '✅ Code kopiert' : '⚠️ Bitte abtippen';
-      setTimeout(function () { copyCode.textContent = '📋 studo4fsmbvt'; }, 2500);
-    });
-  });
-
   var copyFailed = false;
   go.addEventListener('click', function () {
     if (!chosen) return;
