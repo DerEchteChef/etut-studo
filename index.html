@@ -183,7 +183,7 @@
     s.hidden = false; s.textContent = 'Lade Statistik …';
     fetchWithTimeout(COUNTER + '/get/' + NS + '/' + KEY, 4000).then(function (d) {
       var n = d.value || 0;
-      s.textContent = 'Bisher ' + n + ' Einladungen verteilt – Link 1: ' + Math.ceil(n / 2) + ', Link 2: ' + Math.floor(n / 2);
+      s.textContent = 'Bisher ' + n + ' Einladungen verteilt – Link 1 (…9b72): ' + Math.floor(n / 2) + ', Link 2 (…f0c3): ' + Math.ceil(n / 2);
     }).catch(function () { s.textContent = 'Statistik gerade nicht erreichbar.'; });
   }
 
